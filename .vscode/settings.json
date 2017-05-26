@@ -1,0 +1,15 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": false
+    },
+    "eslint.enable": true,
+    "eslint.autoFixOnSave": true
+}

@@ -1,0 +1,6 @@
+--recursive
+--colors
+--check-leaks
+--reporter spec
+--globals app,testHelper,CLIENT,hashHelper
+--require test-framework/index.js

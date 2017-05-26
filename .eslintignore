@@ -1,0 +1,4 @@
+typings/**
+coverage/**
+node_modules/**
+.vscode/**
