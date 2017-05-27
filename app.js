@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
 const ExceptionHandler = require('./modules/exceptionHandler');
-// const kv = require('./modules/MemStore');
+const kv = require('./modules/MemStore');
 
 /**
  * Main shopback cli application
@@ -29,7 +29,9 @@ class SbCli {
                 _.each(files, (f) => {
                     if (f.endsWith('.action.js')) {
                         /* eslint import/no-extraneous-dependencies:1 global-require: 1 , import/no-dynamic-require: 1 */
-                        require(f);
+                        const Action = require(path.join(dirPath, f));
+                        const instance = new Action();
+                        kv.register(instance.key, instance);
                     }
                 });
             }
