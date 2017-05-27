@@ -10,8 +10,9 @@
             "name": "Launch Program",
             "program": "${workspaceRoot}/shopback-calculator.js",
             "args": [
-                "signup",
-                "www.shopback.sg"
+                "spend",
+                "100",
+                "5"
             ]
         },
         {
