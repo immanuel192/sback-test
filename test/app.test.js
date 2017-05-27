@@ -11,20 +11,45 @@ const sandbox = sinon.sandbox.create();
 const LoggerPrototype = {
     log: sandbox.stub()
 };
+const FakeFs = {
+    readdirSync: sandbox.stub()
+};
 const ExceptionHandler = sandbox.stub();
 const StubOptions = {
     './modules/exceptionHandler': ExceptionHandler,
-    './modules/MemStore': ''
+    './modules/MemStore': '',
+    fs: FakeFs
 };
+let ExceptionHandlerCalledStatus;
 
 describe('SbCli', () => {
     before(() => {
         const SbCli = proxyquire('../app', StubOptions);
         app = new SbCli(LoggerPrototype);
+        ExceptionHandlerCalledStatus = (ExceptionHandler.calledWith(LoggerPrototype) === true);
+    });
+
+    beforeEach(() => {
+        sandbox.reset();
     });
 
     it('should call Exception handler when initialize', () => {
-        assert.equal(ExceptionHandler.calledWith(LoggerPrototype), true);
+        assert.equal(ExceptionHandlerCalledStatus, true);
+    });
+
+    context('loadActions', () => {
+        it('shoud rejected if any exception when loading modules', () => {
+            const expectMessage = 'fake error';
+
+            FakeFs.readdirSync.throws(new Error(expectMessage));
+            return app.loadActions()
+                .then(() => {
+                    throw new Error('loadActions complete sucessfully when having exception');
+                })
+                .catch((err) => {
+                    assert.equal(err.message, expectMessage);
+                });
+        });
     });
 
     context('doActions', () => {

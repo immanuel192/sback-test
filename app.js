@@ -1,4 +1,7 @@
 'use strict';
+const path = require('path');
+const fs = require('fs');
+const _ = require('lodash');
 const ExceptionHandler = require('./modules/exceptionHandler');
 // const kv = require('./modules/MemStore');
 
@@ -19,7 +22,23 @@ class SbCli {
      * @memberof SbCli
      */
     loadActions() {
-        return Promise.resolve();
+        return new Promise((resolve, reject) => {
+            const dirPath = path.join(__dirname, 'actions');
+            try {
+                const files = fs.readdirSync(dirPath);
+                _.each(files, (f) => {
+                    if (f.endsWith('.action.js')) {
+                        /* eslint import/no-extraneous-dependencies:1 global-require: 1 , import/no-dynamic-require: 1 */
+                        require(f);
+                    }
+                });
+            }
+            catch (err) {
+                return reject(err);
+            }
+
+            return resolve();
+        });
     }
 
     /**
