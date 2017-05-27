@@ -53,6 +53,14 @@ describe('Action Signup', () => {
         assert.equal(ret, expect);
     });
 
+    it('should return No cashback if can not recognize domain', () => {
+        const expect = 'No cashback';
+        const domain = 'www.google.com';
+        const ret = action.handler(domain);
+
+        assert.equal(ret, expect);
+    });
+
     it('should not allow case sensitive', () => {
         const expect = 'Award bonus: 5.00 USD';
         const domain = 'www.MYSHOPBACK.com';
