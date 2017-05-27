@@ -1,6 +1,6 @@
 'use strict';
 const ExceptionHandler = require('./modules/exceptionHandler');
-const kv = require('./modules/MemStore');
+// const kv = require('./modules/MemStore');
 
 /**
  * Main shopback cli application
@@ -31,11 +31,11 @@ class SbCli {
      */
     doAction(inp) {
         let ret = '';
-        if (inp.length === 0) {
+        if (!inp || inp.length === 0) {
             ret = 'No input';
         }
 
-        console.log(inp);
+        // console.log(inp);
         return ret;
 
         // // $ node shopback-calculator.js signup www.shopback.sg
