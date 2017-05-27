@@ -14,10 +14,14 @@ const LoggerPrototype = {
 const FakeFs = {
     readdirSync: sandbox.stub()
 };
+const FakeMemStore = {
+    register: sandbox.stub(),
+    resolve: sandbox.stub()
+};
 const ExceptionHandler = sandbox.stub();
 const StubOptions = {
     './modules/exceptionHandler': ExceptionHandler,
-    './modules/MemStore': '',
+    './modules/MemStore': FakeMemStore,
     fs: FakeFs
 };
 let ExceptionHandlerCalledStatus;
@@ -65,6 +69,27 @@ describe('SbCli', () => {
             const expectMessage = 'No input';
             const ret = app.doAction(inp);
             assert.equal(ret, expectMessage);
+        });
+
+        it('should return Action Not Exist if action does not exist', () => {
+            const inp = ['unknown-action'];
+            const expectMessage = 'Action Not Exist';
+            FakeMemStore.resolve.returns(null);
+            const ret = app.doAction(inp);
+            assert.equal(ret, expectMessage);
+        });
+
+        it('should call action handlers to resolve result', () => {
+            const inp = ['test-action', 123];
+            const expectMessage = 'my expect message';
+            FakeMemStore.resolve.withArgs(inp[0]).returns({
+                handler: (req) => {
+                    return expectMessage + req;
+                }
+            });
+
+            const ret = app.doAction(inp);
+            assert.equal(ret, expectMessage + inp[1]);
         });
     });
 });
