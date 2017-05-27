@@ -1,5 +1,6 @@
 'use strict';
 const Logger = require('./modules/logger');
+
 const logger = new Logger();
 
 // $ node shopback-calculator.js signup www.shopback.sg
