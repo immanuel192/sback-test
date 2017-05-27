@@ -14,5 +14,5 @@ app.loadActions()
         return app.doAction(inp);
     })
     .then((ret) => {
-        logger.log(ret);
+        console.log(ret);
     });

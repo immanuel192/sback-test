@@ -8,7 +8,11 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/shopback-calculator.js"
+            "program": "${workspaceRoot}/shopback-calculator.js",
+            "args": [
+                "signup",
+                "www.shopback.sg"
+            ]
         },
         {
             "name": "Debug unit test",
