@@ -48,6 +48,14 @@ describe('Action Redeem', () => {
         TestRedeem(domain, targetdomain);
     });
 
+    it('should return redeem redirect for www.shopback.com', () => {
+        const domain = 'abc.com';
+        const expect = 'No redemption';
+        const ret = action.handler(domain);
+
+        assert.equal(ret, expect);
+    });
+
     it('should allow non-case-sentensive', () => {
         const domain = 'www.shopBACK.com';
         const targetdomain = 'https://www.shopback.com';
