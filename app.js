@@ -22,8 +22,21 @@ class SbCli {
         return Promise.resolve();
     }
 
+    /**
+     * Do action
+     *
+     * @param {String[]} inp
+     *
+     * @memberof SbCli
+     */
     doAction(inp) {
+        let ret = '';
+        if (inp.length === 0) {
+            ret = 'No input';
+        }
+
         console.log(inp);
+        return ret;
 
         // // $ node shopback-calculator.js signup www.shopback.sg
         // logger.log('Award bonus: 5.00 SGD');

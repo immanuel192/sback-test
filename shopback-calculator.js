@@ -12,4 +12,7 @@ app.loadActions()
     })
     .then((inp) => {
         return app.doAction(inp);
+    })
+    .then((ret) => {
+        logger.log(ret);
     });
