@@ -1,7 +1,10 @@
 'use strict';
 const Logger = require('./modules/logger');
+const kv = require('./modules/MemStore');
+const AppCli = require('./app');
 
 const logger = new Logger();
+const app = new AppCli(logger);
 
 // $ node shopback-calculator.js signup www.shopback.sg
 logger.log('Award bonus: 5.00 SGD');
