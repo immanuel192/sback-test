@@ -18,23 +18,17 @@ const BaseAction = require('./BaseAction');
  */
 function calculateCashback(amounts) {
     let highest = 0;
-    const data = [];
-    amounts.forEach((v) => {
-        const n = Number(v);
-        if (n >= 0) {
-            data.push(n);
-            (n > highest) && (highest = n);
-        }
-    });
-
     const result = {
         50: true, 20: true, 10: true
     };
-
-    data.forEach((v) => {
-        result[50] = result[50] && v >= 50;
-        result[20] = result[20] && v >= 20;
-        result[10] = result[10] && v >= 10;
+    amounts.forEach((v) => {
+        const n = Number(v);
+        if (n >= 0) {
+            (n > highest) && (highest = n);
+            result[50] = result[50] && n >= 50;
+            result[20] = result[20] && n >= 20;
+            result[10] = result[10] && n >= 10;
+        }
     });
 
     if (result[50]) {
