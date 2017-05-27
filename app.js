@@ -57,14 +57,15 @@ class SbCli {
             return ret;
         }
 
-        const actionKey = inp.shift().toLowerCase();
+        const input = _.clone(inp);
+        const actionKey = input.shift().toLowerCase();
         const action = kv.resolve(actionKey);
         if (!action) {
             ret = 'Action Not Exist';
             return ret;
         }
 
-        // console.log(inp);
+        ret = action.handler(...input);
         return ret;
     }
 }

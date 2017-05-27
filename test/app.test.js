@@ -78,5 +78,18 @@ describe('SbCli', () => {
             const ret = app.doAction(inp);
             assert.equal(ret, expectMessage);
         });
+
+        it('should call action handlers to resolve result', () => {
+            const inp = ['test-action', 123];
+            const expectMessage = 'my expect message';
+            FakeMemStore.resolve.withArgs(inp[0]).returns({
+                handler: (req) => {
+                    return expectMessage + req;
+                }
+            });
+
+            const ret = app.doAction(inp);
+            assert.equal(ret, expectMessage + inp[1]);
+        });
     });
 });
