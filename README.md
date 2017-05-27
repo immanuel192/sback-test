@@ -1,0 +1,3 @@
+[![Build Status](https://travis-ci.org/immanuel192/sback-test.png?branch=master)](https://travis-ci.org/immanuel192/sback-test/)
+[![Code Climate](https://codeclimate.com/github/immanuel192/sback-test.png)](https://codeclimate.com/github/immanuel192/sback-test)
+[![Test Coverage](https://codeclimate.com/github/immanuel192/sback-test/badges/coverage.svg)](https://codeclimate.com/github/immanuel192/sback-test/coverage)
